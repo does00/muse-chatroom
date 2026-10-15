@@ -1,0 +1,15 @@
+services:
+  chatroom:
+    build: .
+    image: muse-chatroom:1.0.0
+    container_name: muse-chatroom
+    restart: unless-stopped
+    ports:
+      - "3007:3007"
+    environment:
+      - PRESENCE_TTL=60
+      - PORT=3007
+      - DATA_DIR=/data
+    volumes:
+      # 数据持久化：消息/密码/人设/上传图片
+      - ./data:/data
